@@ -1,6 +1,6 @@
 {
-  "server_routes_url": "http://localhost:3000/api/v1",
-  "server_url": "http://localhost:3000",
+  "server_routes_url": "http://localhost:5000/api/v1",
+  "server_url": "http://localhost:5000",
   "status": {
     "pending": 1,
     "approved": 2

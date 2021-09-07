@@ -3,6 +3,7 @@ import apiRequests from "../../api/api";
 
 const authThunks = {
   loginUser: (body) => async (dispatch) => {
+    dispatch(authActions.loginUserRequest());
     const res = await apiRequests.postRequest("/auth/login", body);
     if (res.success) {
       dispatch(authActions.loginUserSuccess());
@@ -37,7 +38,7 @@ const authThunks = {
       );
   },
   authenticateUser: () => async (dispatch) => {
-    const res = await apiRequests.getRequest("/users/auth/verifyToken");
+    const res = await apiRequests.getRequest("/auth/verifyToken");
     if (res.success)
       console.info("Action", dispatch(authActions.authenticateUserSuccess()));
     else if (res.connectionError)

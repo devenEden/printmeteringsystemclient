@@ -14,9 +14,10 @@ const apiRequests = {
       const res = await fetch(`${appConfig.server_routes_url}${url}`, {
         headers: { authorization },
       });
+      console.log(res);
       return res.json();
     } catch (error) {
-      console.error(error);
+      console.error("Get request error", error);
       return errorResponseObject;
     }
   },

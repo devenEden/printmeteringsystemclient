@@ -6,7 +6,7 @@ const Dashboard = () => {
     document.title = routes.dashboard.title;
   }, []);
   return (
-    <div className="w-100">
+    <div id="main-container" className="w-100">
       <h1>Dashboard</h1>
     </div>
   );

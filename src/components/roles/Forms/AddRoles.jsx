@@ -9,11 +9,12 @@ import {
   message,
 } from "antd";
 import React, { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import appConfig from "../../../config/config.json";
 
 const AddRoles = ({ visible, handleCloseModal, handleAddRecord }) => {
   /*  */
+  const [form] = Form.useForm();
   const {
     addRolesLoading,
     addRolesMessage,
@@ -37,8 +38,11 @@ const AddRoles = ({ visible, handleCloseModal, handleAddRecord }) => {
     handleAddRecord(values, roles);
   };
   useEffect(() => {
-    if (addRolesMessage && addRolesSuccess) message.success(addRolesMessage);
-  }, [addRolesSuccess, addRolesMessage]);
+    if (addRolesMessage && addRolesSuccess) {
+      message.success(addRolesMessage);
+      form.resetFields();
+    }
+  }, [addRolesSuccess, addRolesMessage, form]);
   return (
     <div>
       <Modal
@@ -48,7 +52,7 @@ const AddRoles = ({ visible, handleCloseModal, handleAddRecord }) => {
         onCancel={closeModal}
         visible={visible}
       >
-        <Form onFinish={onFinish} layout="vertical">
+        <Form form={form} onFinish={onFinish} layout="vertical">
           {!addRolesSuccess && addRolesError && (
             <Alert
               showIcon

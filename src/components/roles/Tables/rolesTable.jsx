@@ -10,6 +10,7 @@ const RolesTable = ({
   handleViewDetails,
   handleOpenAddModal,
   handleRefreshTable,
+  handleOpenEditModal,
 }) => {
   const [deleteId, setDeleteId] = useState("");
   const {
@@ -93,13 +94,14 @@ const RolesTable = ({
     handleDeleteRole(deleteId, roles);
   };
   const viewDetails = (e) => {
-    handleViewDetails(e.target.id);
+    const updateRecordArray = data.filter((r) => r.id === e.target.id);
+    handleViewDetails(true, updateRecordArray[0]);
     // dispatch(appUiActions.toggleViewRolesModal(true));
   };
   const updateRecord = (e) => {
     const updateRecordArray = data.filter((r) => r.id === e.target.id);
     dispatch(roleActions.editRolesData(updateRecordArray[0]));
-    //dispatch(appUiActions.toggleEditRolesModal(true));
+    handleOpenEditModal(true);
   };
   const setfilterTableNull = (e) => {
     if (!e.target.value) setfilterTable(null);

@@ -1,5 +1,5 @@
 import { Menu, Layout } from "antd";
-import React, { useState } from "react";
+import React from "react";
 import {
   AiFillLayout,
   AiFillPrinter,
@@ -16,7 +16,6 @@ const { Sider } = Layout;
 
 const AppSider = () => {
   const history = useHistory();
-  const [collapsedContainer, setCollapsedContainer] = useState(false);
   const logoutUser = () => {
     removeAuthToken();
     history.push(routes.authentication.login.path);
@@ -32,7 +31,6 @@ const AppSider = () => {
       }}
       onCollapse={(collapsed, type) => {
         const mainContainer = document.getElementById("main-container");
-        setCollapsedContainer(true);
         console.log(mainContainer.clientWidth);
         if (collapsed && mainContainer.clientWidth < 300) {
           mainContainer.classList.remove("d-none");

@@ -1,15 +1,17 @@
 import { message } from "antd";
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { useHistory } from "react-router";
+import { Route, useHistory } from "react-router";
 import { getAuthToken, removeAuthToken } from "../../config/helpers/authToken";
 import routes from "../../config/routes/routes";
 import authThunks from "../../config/thunks/auth/auth.thunks";
 import { Layout } from "antd";
 import AppSider from "../../components/Shared/Sider";
 import AppHeader from "../../components/Shared/AppHeader";
+import PageNotFound from "./App/404";
+import { Switch } from "react-router-dom";
 
-const { Header, Content, Footer } = Layout;
+const { Content, Footer } = Layout;
 
 const MainLayout = () => {
   const { authenticated, authenticateUser } = useSelector(
@@ -40,15 +42,24 @@ const MainLayout = () => {
         <Layout>
           <AppHeader />
           <Content style={{ margin: "24px 16px 0" }}>
-            <div
-              className="site-layout-background"
-              style={{ padding: 24, minHeight: 360 }}
-            >
-              content
-            </div>
+            <Switch>
+              <Route
+                exact
+                path={routes.dashboard.path}
+                component={routes.dashboard.component}
+              />
+              <Route
+                exact
+                path={routes.roles.path}
+                component={routes.roles.component}
+              />
+              <Route>
+                <PageNotFound />
+              </Route>
+            </Switch>
           </Content>
           <Footer style={{ textAlign: "center" }}>
-            Ant Design ©2018 Created by Ant UED
+            Printer Tracker System &copy; 2021
           </Footer>
         </Layout>
       </Layout>

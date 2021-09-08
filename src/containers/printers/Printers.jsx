@@ -9,6 +9,9 @@ import PrinterTypesTables from "../../components/PrinterTypes/Tables/PrinterType
 import routes from "../../config/routes/routes";
 import printerThunks from "../../config/thunks/printers/printers.thunks";
 import printerTypeThunks from "../../config/thunks/printers/printerTypes.thunks";
+import AddPrinter from "../../components/printers/forms/AddPrinters";
+import EditPrinter from "../../components/printers/forms/EditPrinter";
+import PrinterDetails from "../../components/printers/Details/PrinterDetails";
 
 const Printers = () => {
   const [printerTypesModal, setPrinterTypesModal] = useState(false);
@@ -16,6 +19,8 @@ const Printers = () => {
   const [editPrinterTypeModal, setEditPrinterTypeModal] = useState(false);
   const [printerTypeDetailsModal, setPrinterTypeDetailsModal] = useState(false);
   const [openAddPrinterModal, setOpenAddPrinterModal] = useState(false);
+  const [openEditPrinterModal, setOpenEditPrintersModal] = useState(false);
+  const [printerDetailsModal, setPrinterDetailsModal] = useState(false);
 
   const { printersSuccess } = useSelector((state) => state.printersState);
   const { printerTypesSuccess } = useSelector(
@@ -23,14 +28,15 @@ const Printers = () => {
   );
   const dispatch = useDispatch();
   //ui fucntions
-  const togglePrinterTypesModal = (value) => {
-    setPrinterTypesModal(value);
-  };
+  const togglePrinterTypesModal = (value) => setPrinterTypesModal(value);
+  const toggleEditPrinterModal = (value) => setOpenEditPrintersModal(value);
   const toggleAddPrinterTypesModal = (value) =>
     setOpenAddPrinterTypeModal(value);
   const toggleEditPrinterTypeModal = (value) => setEditPrinterTypeModal(value);
   const togglePrinterTypeDetailsModal = (value) =>
     setPrinterTypeDetailsModal(value);
+  const toggleAddPrinterModal = (value) => setOpenAddPrinterModal(value);
+  const togglePrinterDetailsModal = (value) => setPrinterDetailsModal(value);
 
   //thunks
   const refreshData = () => {
@@ -41,16 +47,27 @@ const Printers = () => {
   const deletePrinterType = (id, printerTypes) => {
     dispatch(printerTypeThunks.deletePrinterTypes(id, printerTypes));
   };
+  const deletePrinter = (id, printers) =>
+    dispatch(printerThunks.deletePrinters(id, printers));
   const printerTypeDetails = (id) => {
     setPrinterTypeDetailsModal(true);
     dispatch(printerTypeThunks.getPrinterTypesDetails(id));
   };
   const addPrinterType = (values, printerTypes) =>
     dispatch(printerTypeThunks.addPrinterTypes(values, printerTypes));
+  const addPrinter = (values, printers) =>
+    dispatch(printerThunks.addPrinters(values, printers));
   const editPrinterType = (values, printerTypes) =>
     dispatch(printerTypeThunks.editPrinterTypes(values, printerTypes));
+  const editPrinter = (values, printers) =>
+    dispatch(printerThunks.editPrinters(values, printers));
   const approvePrinterType = (id) =>
     dispatch(printerTypeThunks.approvePrinterTypes(id));
+  const approvePrinter = (id) => dispatch(printerThunks.approvePrinters(id));
+  const printerDetails = (id) => {
+    setPrinterDetailsModal(true);
+    dispatch(printerThunks.getPrintersDetails(id));
+  };
   //use effect
   useEffect(() => {
     document.title = routes.printers.title;
@@ -69,7 +86,13 @@ const Printers = () => {
       >
         Printer Types
       </Button>
-      <PrintersTable handleRefreshTable={refreshData} />
+      <PrintersTable
+        handleViewDetails={printerDetails}
+        handleOpenEditModal={toggleEditPrinterModal}
+        handleDelete={deletePrinter}
+        handleOpenAddModal={toggleAddPrinterModal}
+        handleRefreshTable={refreshData}
+      />
       <PrinterTypesTables
         handleViewDetails={printerTypeDetails}
         handleOpenEditModal={toggleEditPrinterTypeModal}
@@ -93,6 +116,21 @@ const Printers = () => {
         handApprovePrinterType={approvePrinterType}
         handleCloseModal={togglePrinterTypeDetailsModal}
         visible={printerTypeDetailsModal}
+      />
+      <AddPrinter
+        visible={openAddPrinterModal}
+        handleCloseModal={toggleAddPrinterModal}
+        handleAddRecord={addPrinter}
+      />
+      <EditPrinter
+        handleEditRecord={editPrinter}
+        visible={openEditPrinterModal}
+        handleCloseModal={toggleEditPrinterModal}
+      />
+      <PrinterDetails
+        handApprovePrinterType={approvePrinter}
+        visible={printerDetailsModal}
+        handleCloseModal={togglePrinterDetailsModal}
       />
     </div>
   );

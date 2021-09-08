@@ -110,8 +110,7 @@ const PrintersTable = ({
     handleDelete(deleteId, printers);
   };
   const viewDetails = (e) => {
-    const updateRecordArray = data.filter((r) => r.id === e.target.id);
-    handleViewDetails(true, updateRecordArray[0]);
+    handleViewDetails(e.target.id);
     // dispatch(appUiActions.toggleViewPrintersModal(true));
   };
   const updateRecord = (e) => {

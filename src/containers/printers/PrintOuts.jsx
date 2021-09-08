@@ -2,8 +2,8 @@ import React from "react";
 
 const PrintOuts = () => {
   return (
-    <div>
-      <h1>Printers</h1>
+    <div id="main-container">
+      <h1>Print Outs</h1>
     </div>
   );
 };

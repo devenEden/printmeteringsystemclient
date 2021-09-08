@@ -61,7 +61,12 @@ const printerTypeThunks = {
   },
   approvePrinterTypes: (id) => async (dispatch) => {
     dispatch(printerTypeActions.approvePrinterTypesRequest());
-    const res = await apiRequests.patchRequest(`/printers/types/approve/${id}`);
+    const res = await apiRequests.patchRequest(
+      `/printers/types/approve/${id}`,
+      {
+        approvedAt: new Date(),
+      }
+    );
     if (res.success) {
       dispatch(printerTypeActions.approvePrinterTypesSuccess(res.message));
       //dispatch(roleThunks.getPrinterTypesDetails(id));

@@ -55,7 +55,9 @@ const roleThunks = {
   },
   approveRoles: (id) => async (dispatch) => {
     dispatch(roleActions.approveRolesRequest());
-    const res = await apiRequests.patchRequest(`/roles/approve/${id}`);
+    const res = await apiRequests.patchRequest(`/roles/approve/${id}`, {
+      approvedAt: new Date(),
+    });
     if (res.success) {
       dispatch(roleActions.approveRolesSuccess(res.message));
       //dispatch(roleThunks.getRolesDetails(id));

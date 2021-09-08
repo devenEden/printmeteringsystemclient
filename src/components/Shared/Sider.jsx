@@ -47,8 +47,12 @@ const AppSider = () => {
         <Menu.Item icon={<AiFillPrinter />}>
           <Link to={routes.printers.path}>Printers</Link>
         </Menu.Item>
-        <Menu.Item icon={<AiOutlineFilePpt />}>Print Outs</Menu.Item>
-        <Menu.Item icon={<AiOutlineUser />}>Users</Menu.Item>
+        <Menu.Item icon={<AiOutlineFilePpt />}>
+          <Link to={routes.printOuts.path}>Print Outs</Link>
+        </Menu.Item>
+        <Menu.Item icon={<AiOutlineUser />}>
+          <Link to={routes.users.path}>Users</Link>
+        </Menu.Item>
         <Menu.Item icon={<AiFillLayout />}>
           <Link to={routes.roles.path}>Roles</Link>
         </Menu.Item>

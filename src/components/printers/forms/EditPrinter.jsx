@@ -1,45 +1,59 @@
 import { Modal, Form, Input, Button, message, Alert, Select } from "antd";
 import React, { useEffect } from "react";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { printerActions } from "../../../config/actions/printers/printers.actions";
 
-const AddPrinter = ({ visible, handleCloseModal, handleAddRecord }) => {
+const EditPrinter = ({ visible, handleCloseModal, handleEditRecord }) => {
   const {
-    addPrintersLoading,
-    addPrintersMessage,
-    addPrintersSuccess,
-    addPrintersError,
+    editPrintersLoading,
+    editPrintersMessage,
+    editPrintersSuccess,
+    editPrintersError,
     printers,
     printersMetaData,
+    editPrintersData,
   } = useSelector((state) => state.printersState);
+  const dispatch = useDispatch();
+  const fields = [
+    { name: "name", value: editPrintersData.name },
+    { name: "ip", value: editPrintersData.ip },
+    { name: "location", value: editPrintersData.location },
+    { name: "printer_type", value: editPrintersData.printer_type },
+  ];
   const [form] = Form.useForm();
   const closeModal = () => {
     handleCloseModal(false);
   };
   const onFinish = (values) => {
     values.created_at = new Date();
-    handleAddRecord(values, printers);
+    values.id = editPrintersData.id;
+    const updateRecordArray = printers.filter(
+      (r) => r.id !== editPrintersData.id
+    );
+    dispatch(printerActions.editPrintersData(values));
+    handleEditRecord(values, updateRecordArray);
   };
 
   useEffect(() => {
-    if (addPrintersSuccess && addPrintersMessage) {
-      message.success(addPrintersMessage);
-      form.resetFields();
+    if (editPrintersSuccess && editPrintersMessage) {
+      message.success(editPrintersMessage);
+      handleCloseModal(false);
     }
-  }, [addPrintersSuccess, addPrintersMessage, form]);
+  }, [editPrintersSuccess, editPrintersMessage, handleCloseModal]);
   return (
     <div>
       <Modal
         footer={null}
-        title="ADD PRINTER "
+        title="EDIT PRINTER "
         onCancel={closeModal}
         visible={visible}
       >
-        <Form form={form} onFinish={onFinish} layout="vertical">
-          {!addPrintersSuccess && addPrintersError && (
+        <Form fields={fields} form={form} onFinish={onFinish} layout="vertical">
+          {!editPrintersSuccess && editPrintersError && (
             <Alert
               showIcon
               type="error"
-              message={addPrintersError}
+              message={editPrintersError}
               className="my-2"
             />
           )}
@@ -81,7 +95,7 @@ const AddPrinter = ({ visible, handleCloseModal, handleAddRecord }) => {
           </Form.Item>
           <Form.Item>
             <Button
-              loading={addPrintersLoading}
+              loading={editPrintersLoading}
               type="primary"
               htmlType="submit"
             >
@@ -94,4 +108,4 @@ const AddPrinter = ({ visible, handleCloseModal, handleAddRecord }) => {
   );
 };
 
-export default AddPrinter;
+export default EditPrinter;

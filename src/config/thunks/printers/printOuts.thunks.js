@@ -56,7 +56,9 @@ const PrintOutsThunks = {
   },
   approvePrintOuts: (id) => async (dispatch) => {
     dispatch(printOutActions.approvePrintOutsRequest());
-    const res = await apiRequests.patchRequest(`/printers/approve/${id}`);
+    const res = await apiRequests.patchRequest(`/printers/approve/${id}`, {
+      approvedAt: new Date(),
+    });
     if (res.success) {
       dispatch(printOutActions.approvePrintOutsSuccess(res.message));
       //dispatch(roleThunks.getPrintOutsDetails(id));

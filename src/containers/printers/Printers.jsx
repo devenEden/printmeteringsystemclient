@@ -1,4 +1,4 @@
-import { Button } from "antd";
+import { Button, Space } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PrinterTypeDetails from "../../components/PrinterTypes/Details/PrinterTypeDetails";
@@ -79,13 +79,16 @@ const Printers = () => {
   }, [printersSuccess, dispatch, printerTypesSuccess]);
   return (
     <div id="main-container">
-      <Button
-        onClick={() => togglePrinterTypesModal(true)}
-        className="mt-4"
-        type="type"
-      >
-        Printer Types
-      </Button>
+      <Space direction="vertical">
+        <h3 className="m-3 mb-0">Printers</h3>
+        <Button
+          onClick={() => togglePrinterTypesModal(true)}
+          className=""
+          type="link"
+        >
+          Printer Types
+        </Button>
+      </Space>
       <PrintersTable
         handleViewDetails={printerDetails}
         handleOpenEditModal={toggleEditPrinterModal}

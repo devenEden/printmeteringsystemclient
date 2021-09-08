@@ -3,7 +3,6 @@ import React from "react";
 import {
   AiFillLayout,
   AiFillPrinter,
-  AiOutlineDesktop,
   AiOutlineFilePpt,
   AiOutlineLogout,
   AiOutlineUser,
@@ -32,18 +31,15 @@ const AppSider = () => {
       }}
       onCollapse={(collapsed, type) => {
         const mainContainer = document.getElementById("main-container");
-        console.log(mainContainer.clientWidth);
-        if (collapsed && mainContainer.clientWidth < 300) {
+        console.log(mainContainer?.clientWidth);
+        if (collapsed && mainContainer?.clientWidth < 500) {
           mainContainer.classList.remove("d-none");
-        } else if (!collapsed && mainContainer.clientWidth < 300)
+        } else if (!collapsed && mainContainer?.clientWidth < 500)
           mainContainer.classList.add("d-none");
       }}
     >
       <Menu theme="light" mode="inline" defaultSelectedKeys={["4"]}>
-        <h4 className="text-center m-3 mb-4">Printer Tracker</h4>
-        <Menu.Item icon={<AiOutlineDesktop />} key="1">
-          <Link to={routes.dashboard.path}>DashBoard</Link>
-        </Menu.Item>
+        <h4 className="text-center m-3 mb-5"> </h4>
         <Menu.Item icon={<AiFillPrinter />}>
           <Link to={routes.printers.path}>Printers</Link>
         </Menu.Item>

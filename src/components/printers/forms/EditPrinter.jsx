@@ -25,7 +25,7 @@ const EditPrinter = ({ visible, handleCloseModal, handleEditRecord }) => {
     handleCloseModal(false);
   };
   const onFinish = (values) => {
-    values.created_at = new Date();
+    values.updated_at = new Date();
     values.id = editPrintersData.id;
     const updateRecordArray = printers.filter(
       (r) => r.id !== editPrintersData.id

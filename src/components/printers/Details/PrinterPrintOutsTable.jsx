@@ -32,7 +32,7 @@ const PrintOutsTable = ({ data }) => {
   ];
   return (
     <div>
-      <Table columns={columns} dataSource={data.print_outs} />
+      <Table columns={columns} dataSource={data?.print_outs} />
     </div>
   );
 };

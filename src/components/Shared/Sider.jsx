@@ -4,6 +4,7 @@ import {
   AiFillLayout,
   AiFillPrinter,
   AiOutlineDesktop,
+  AiOutlineFilePpt,
   AiOutlineLogout,
   AiOutlineUser,
 } from "react-icons/ai";
@@ -43,7 +44,10 @@ const AppSider = () => {
         <Menu.Item icon={<AiOutlineDesktop />} key="1">
           <Link to={routes.dashboard.path}>DashBoard</Link>
         </Menu.Item>
-        <Menu.Item icon={<AiFillPrinter />}>Printers</Menu.Item>
+        <Menu.Item icon={<AiFillPrinter />}>
+          <Link to={routes.printers.path}>Printers</Link>
+        </Menu.Item>
+        <Menu.Item icon={<AiOutlineFilePpt />}>Print Outs</Menu.Item>
         <Menu.Item icon={<AiOutlineUser />}>Users</Menu.Item>
         <Menu.Item icon={<AiFillLayout />}>
           <Link to={routes.roles.path}>Roles</Link>

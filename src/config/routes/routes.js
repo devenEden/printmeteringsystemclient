@@ -2,7 +2,11 @@ import ConfirmAccount from "../../containers/auth/ConfirmAccount";
 import Login from "../../containers/auth/Login";
 import ResetPassword from "../../containers/auth/ResetPassword";
 import Dashboard from "../../containers/Dashboard/Dashboard";
+import Printers from "../../containers/printers/Printers";
+import PrintOuts from "../../containers/printers/PrintOuts";
 import Roles from "../../containers/roles/Roles";
+import Profile from "../../containers/users/Profile";
+import Users from "../../containers/users/Users";
 
 const routes = {
   authentication: {
@@ -31,6 +35,26 @@ const routes = {
     path: "/roles",
     title: "ROLES",
     component: Roles,
+  },
+  printers: {
+    path: "/printers",
+    title: "PRINTERS",
+    component: Printers,
+  },
+  printOuts: {
+    path: "/printers/print_outs",
+    title: "PRINT OUTS",
+    component: PrintOuts,
+  },
+  users: {
+    path: "/users",
+    title: "USERS",
+    component: Users,
+  },
+  profile: {
+    path: "/users/:id",
+    title: "PROFILE",
+    component: Profile,
   },
 };
 

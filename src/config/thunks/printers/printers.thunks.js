@@ -65,7 +65,7 @@ const printerThunks = {
   },
   printersMetaData: () => async (dispatch) => {
     dispatch(printerActions.setPrintersMetaDataRequest());
-    const res = await apiRequests.getRequest();
+    const res = await apiRequests.getRequest("/printers/metadata");
     dispatch(printerActions.setPrintersMetaData(res.data || {}));
   },
 };

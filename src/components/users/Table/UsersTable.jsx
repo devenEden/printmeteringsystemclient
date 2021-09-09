@@ -6,7 +6,7 @@ import TableButtonActions from "../../Shared/Table/TableActions";
 import TableTitle from "../../Shared/Table/Title";
 
 const UsersTable = ({
-  handleDeleteRole,
+  handleDelete,
   handleViewDetails,
   handleOpenAddModal,
   handleRefreshTable,
@@ -30,11 +30,11 @@ const UsersTable = ({
       render: (text) => {
         return (
           <div>
-            {text.first_name} ${text.other_names} <br />
+            {text.first_name} {text.other_names} <br />
             <div className="d-sm-none">
               Email: {text.email} <br />
-              Role: {text.roleName}
-              Username: {text.username}
+              Role: {text.roleName} <br />
+              Username: {text.username} <br />
               <Popover
                 trigger="click"
                 placement="bottom"
@@ -70,7 +70,7 @@ const UsersTable = ({
     },
     {
       title: "Role",
-      dataIndex: "role",
+      dataIndex: "roleName",
       key: "role",
       responsive: ["md"],
     },
@@ -113,11 +113,12 @@ const UsersTable = ({
   };
   const confirmDelete = () => {
     const users = data.filter((r) => r.id !== deleteId);
-    handleDeleteRole(deleteId, users);
+    handleDelete(deleteId, users);
   };
   const viewDetails = (e) => {
     const updateRecordArray = data.filter((r) => r.id === e.target.id);
-    handleViewDetails(true, updateRecordArray[0]);
+    dispatch(userActions.editUsersData(updateRecordArray[0]));
+    handleOpenEditModal(true);
     // dispatch(appUiActions.toggleViewUsersModal(true));
   };
   const updateRecord = (e) => {

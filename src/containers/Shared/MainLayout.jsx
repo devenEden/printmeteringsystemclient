@@ -63,6 +63,11 @@ const MainLayout = () => {
                 path={routes.printOuts.path}
                 component={routes.printOuts.component}
               />
+              <Route
+                exact
+                path={routes.users.path}
+                component={routes.users.component}
+              />
               <Route>
                 <PageNotFound />
               </Route>

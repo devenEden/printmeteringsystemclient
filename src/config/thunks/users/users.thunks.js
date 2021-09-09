@@ -53,6 +53,11 @@ const userThunks = {
     else dispatch(userActions.deleteUsersError(res.error));
     dispatch(userActions.deleteUsersComplete());
   },
+  usersMetaData: () => async (dispatch) => {
+    dispatch(userActions.setUsersMetaDataRequest());
+    const res = await apiRequests.getRequest("/users/metadata");
+    dispatch(userActions.setUsersMetaData(res.data || {}));
+  },
 };
 
 export default userThunks;

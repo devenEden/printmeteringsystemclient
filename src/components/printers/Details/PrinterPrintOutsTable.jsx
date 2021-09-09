@@ -1,5 +1,6 @@
 import React from "react";
 import { Table } from "antd";
+import { numberWithCommas } from "../../../config/helpers/numberFormatter";
 
 const PrintOutsTable = ({ data }) => {
   const columns = [
@@ -9,30 +10,48 @@ const PrintOutsTable = ({ data }) => {
       render: (text) => {
         return (
           <div>
-            {text.print_outs} <br />
+            <span className="d-md-none">Print Outs:</span>{" "}
+            {numberWithCommas(text.print_outs)} <br />
             <div className="d-sm-none">
-              Timestamp:{" "}
+              Printer: {data.name} <br />
+              Unit Costs: {numberWithCommas(parseInt(data.unit_cost))} <br />
+              Total Cost:{" "}
+              {numberWithCommas(
+                parseInt(data.printerTypeDetails?.unit_cost) * text.print_outs
+              )}
+              <br />
+              TimeStamp:{" "}
               {`${new Date(text.created_at).toDateString()} ${new Date(
                 text.created_at
-              ).toLocaleTimeString()} `}
+              ).toLocaleTimeString()}`}{" "}
+              <br />
             </div>
           </div>
         );
       },
     },
     {
-      title: "TimeStamp",
-      key: "ip",
+      title: "Total Cost",
       responsive: ["md"],
+      key: "total_cost",
+      render: (text) =>
+        numberWithCommas(
+          parseInt(data.printerTypeDetails?.unit_cost) * text.print_outs
+        ),
+    },
+    {
+      title: "TimeStamp",
+      responsive: ["md"],
+      key: "unit_cost",
       render: (text) =>
         `${new Date(text.created_at).toDateString()} ${new Date(
           text.created_at
-        ).toLocaleTimeString()} `,
+        ).toLocaleTimeString()}`,
     },
   ];
   return (
     <div>
-      <Table columns={columns} dataSource={data?.print_outs} />
+      <Table columns={columns} dataSource={data?.printOuts} />
     </div>
   );
 };

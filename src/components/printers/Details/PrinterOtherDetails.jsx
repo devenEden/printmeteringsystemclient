@@ -1,4 +1,5 @@
 import React from "react";
+import { numberWithCommas } from "../../../config/helpers/numberFormatter";
 
 const PrinterOtherDetails = ({ data }) => {
   return (
@@ -14,6 +15,16 @@ const PrinterOtherDetails = ({ data }) => {
           <tr>
             <td>Name</td>
             <td>{data.name}</td>
+          </tr>
+          <tr>
+            <td>Printer Type</td>
+            <td>{data.printerTypeDetails?.name}</td>
+          </tr>
+          <tr>
+            <td>Unit Cost</td>
+            <td>
+              {numberWithCommas(parseInt(data.printerTypeDetails?.unit_cost))}
+            </td>
           </tr>
           <tr>
             <td>Ip Address</td>

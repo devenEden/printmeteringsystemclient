@@ -33,7 +33,7 @@ const PrinterDetails = ({
   return (
     <div>
       <Modal
-        title="PRINTER TYPE DETAILS"
+        title={printersDetails.name || "PRINTER TYPE DETAILS"}
         visible={visible}
         onCancel={closeModal}
         footer={[

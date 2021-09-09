@@ -30,7 +30,7 @@ const AddPrintOut = ({ visible, handleCloseModal, handleAddRecord }) => {
     <div>
       <Modal
         footer={null}
-        title="ADD PRINTER "
+        title="ADD PRINT OUT "
         onCancel={closeModal}
         visible={visible}
       >

@@ -1,5 +1,6 @@
 import { authActions } from "../../actions/auth.actions";
 import apiRequests from "../../api/api";
+import { generatePermissions } from "../../helpers/permissions";
 
 const authThunks = {
   loginUser: (body) => async (dispatch) => {
@@ -39,9 +40,14 @@ const authThunks = {
   },
   authenticateUser: () => async (dispatch) => {
     const res = await apiRequests.getRequest("/auth/verifyToken");
-    if (res.success)
-      console.info("Action", dispatch(authActions.authenticateUserSuccess()));
-    else if (res.connectionError)
+
+    if (res.success) {
+      const permissions = generatePermissions(res.permissions);
+      console.info(
+        "Action",
+        dispatch(authActions.authenticateUserSuccess(permissions))
+      );
+    } else if (res.connectionError)
       dispatch(
         authActions.authenticateUserError({
           connection: false,

@@ -24,6 +24,9 @@ const users = {
   deleteUsersSuccess: false,
   deleteUsersMessage: "",
   deleteUsersError: "",
+
+  usersMetaDataLoading: false,
+  usersMetaData: {},
 };
 
 export default users;

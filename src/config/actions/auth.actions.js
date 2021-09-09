@@ -71,8 +71,9 @@ export const authActions = {
   authenticateUserRequest: () => ({
     type: authConstants.AUTHENTICATION_USER_REQUEST,
   }),
-  authenticateUserSuccess: () => ({
+  authenticateUserSuccess: (payload) => ({
     type: authConstants.AUTHENTICATION_USER_SUCCESS,
+    payload,
   }),
   authenticateUserError: (payload) => ({
     type: authConstants.AUTHENTICATION_USER_ERROR,

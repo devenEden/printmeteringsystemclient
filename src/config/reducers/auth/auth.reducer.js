@@ -114,6 +114,7 @@ const authState = (state = initialState, { type, payload }) => {
       return {
         ...state,
         authenticated: true,
+        permissions: payload,
         authenticateUser: {
           ...state.authenticateUser,
           connection: true,

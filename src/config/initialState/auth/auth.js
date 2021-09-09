@@ -41,6 +41,7 @@ const intialState = {
     error: "",
     message: "",
   },
+  permissions: {},
 };
 
 export default intialState;

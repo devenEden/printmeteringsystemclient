@@ -22,6 +22,9 @@ export const usersConstants = {
   DELETE_USERS_SUCCESS: "DELETE_USERS_SUCCESS",
   DELETE_USERS_ERROR: "DELETE_USERS_ERROR",
   DELETE_USERS_COMPLETE: "DELETE_USERS_COMPLETE",
+
+  SET_USERS_META_DATA_REQUEST: "SET_USERS_META_DATA_REQUEST",
+  SET_USERS_META_DATA: "SET_USERS_META_DATA",
 };
 
 export const userActions = {
@@ -92,5 +95,12 @@ export const userActions = {
   }),
   deleteUsersComplete: () => ({
     type: usersConstants.DELETE_USERS_COMPLETE,
+  }),
+  setUsersMetaDataRequest: () => ({
+    type: usersConstants.SET_USERS_META_DATA_REQUEST,
+  }),
+  setUsersMetaData: (payload) => ({
+    type: usersConstants.SET_USERS_META_DATA,
+    payload,
   }),
 };

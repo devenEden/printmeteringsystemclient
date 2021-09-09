@@ -127,6 +127,17 @@ const usersState = (state = users, { type, payload }) => {
         deleteUsersSuccess: false,
         deleteUsersError: "",
       };
+    case usersConstants.SET_USERS_META_DATA_REQUEST:
+      return {
+        ...state,
+        usersMetaDataLoading: true,
+      };
+    case usersConstants.SET_USERS_META_DATA:
+      return {
+        ...state,
+        usersMetaDataLoading: false,
+        usersMetaData: payload,
+      };
     default:
       return state;
   }

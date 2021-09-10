@@ -4,7 +4,7 @@ const { Header } = Layout;
 const AppHeader = () => {
   return (
     <Header className="bg-light" style={{ padding: 0 }} title={document.title}>
-      <h5 className="m-3">PRINT TRACKER SYSTEM</h5>
+      <h5 className="m-3">PRINT AND PHOTOCOPYING METERING SYSTEM</h5>
     </Header>
   );
 };

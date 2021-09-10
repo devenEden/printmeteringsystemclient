@@ -306,6 +306,16 @@ const AddRoles = ({ visible, handleCloseModal, handleAddRecord }) => {
                 <Form.Item
                   className="m-0 p-0"
                   valuePropName="checked"
+                  name={appConfig.permissions.can_view_billing}
+                >
+                  <Space direction="horizontal">
+                    <Checkbox value={true} defaultChecked={false} /> Can View
+                    Print Outs
+                  </Space>
+                </Form.Item>
+                <Form.Item
+                  className="m-0 p-0"
+                  valuePropName="checked"
                   name={appConfig.permissions.can_view_print_outs}
                 >
                   <Space direction="horizontal">

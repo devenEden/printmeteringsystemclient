@@ -513,6 +513,23 @@ const EditRoles = ({ visible, handleCloseModal, handleEditRecord }) => {
               <p className="m-0">Print Outs</p>
               <Space direction="vertical">
                 <Form.Item
+                  label="Can View Billing"
+                  className="m-0 p-0"
+                  name={appConfig.permissions.can_view_billing}
+                >
+                  <Select>
+                    <Select.Option
+                      key="can_view_billing"
+                      value={appConfig.permissions.can_view_billing}
+                    >
+                      Permission Granted
+                    </Select.Option>
+                    <Select.Option key="can_view_billing_denied" value={false}>
+                      Permission Denied
+                    </Select.Option>
+                  </Select>
+                </Form.Item>
+                <Form.Item
                   className="m-0 p-0"
                   label="Can View Print Outs"
                   name={appConfig.permissions.can_view_print_outs}

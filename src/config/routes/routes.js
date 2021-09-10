@@ -1,12 +1,12 @@
 import ConfirmAccount from "../../containers/auth/ConfirmAccount";
 import Login from "../../containers/auth/Login";
-import ResetPassword from "../../containers/auth/ResetPassword";
 import Dashboard from "../../containers/Dashboard/Dashboard";
 import Printers from "../../containers/printers/Printers";
 import PrintOuts from "../../containers/printers/PrintOuts";
 import Roles from "../../containers/roles/Roles";
 import Profile from "../../containers/users/Profile";
 import Users from "../../containers/users/Users";
+import ResetPassword from "../../containers/auth/ResetPassword";
 
 const routes = {
   authentication: {

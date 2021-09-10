@@ -1,13 +1,14 @@
 import { Form, Input, Button, Alert } from "antd";
 import { useSelector } from "react-redux";
 
-const LoginForm = ({ handleLogin }) => {
+const LoginForm = ({ handleLogin, handleOpenForgotPasswordModal }) => {
   const { loginLoading, loginSuccess, loginError } = useSelector(
     (state) => state.authState
   );
   const onFinish = (values) => {
     handleLogin(values);
   };
+  const openForgotPasswordModal = () => handleOpenForgotPasswordModal(true);
 
   const onFinishFailed = (errorInfo) => {
     console.log("Failed:", errorInfo);
@@ -24,7 +25,7 @@ const LoginForm = ({ handleLogin }) => {
         autoComplete="off"
       >
         <h3 className="text-secondary text-center mt-3">
-          Printer Tracker System
+          PRINT AND PHOTOCOPYING METERING SYSTEM
         </h3>
         {loginError && !loginSuccess && (
           <Alert showIcon message={loginError} className="my-2" type="error" />
@@ -57,7 +58,9 @@ const LoginForm = ({ handleLogin }) => {
         </Form.Item>
 
         <Form.Item name="remember" valuePropName="checked">
-          <Button type="text">Forgot Password ?</Button>
+          <Button onClick={openForgotPasswordModal} type="text">
+            Forgot Password ?
+          </Button>
         </Form.Item>
 
         <Form.Item>

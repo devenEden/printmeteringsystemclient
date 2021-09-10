@@ -19,7 +19,7 @@ const authThunks = {
   },
   resetPassword: (body, token) => async (dispatch) => {
     const res = await apiRequests.patchRequest(
-      `auth/resetPassword/${token}`,
+      `/auth/resetPassword/${token}`,
       body
     );
     if (res.success) dispatch(authActions.resetPasswordSuccess(res.data));

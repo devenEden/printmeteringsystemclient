@@ -30,6 +30,11 @@ const intialState = {
   approvePrintOutsSuccess: false,
   approvePrintOutsMessage: "",
 
+  importPrintOutsError: "",
+  importPrintOutsSuccess: false,
+  importPrintOutsLoading: false,
+  importPrintOutsMessage: "",
+
   printOutsMetaDataLoading: false,
   printOutsMetaData: {},
 };

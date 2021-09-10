@@ -12,6 +12,11 @@ export const printOutsConstants = {
   ADD_PRINT_OUTS_ERROR: "ADD_PRINT_OUTS_ERROR",
   ADD_PRINT_OUTS_COMPLETE: "ADD_PRINT_OUTS_COMPLETE",
 
+  IMPORT_PRINT_OUTS_REQUEST: "IMPORT_PRINT_OUTS_REQUEST",
+  IMPORT_PRINT_OUTS_SUCCESS: "IMPORT_PRINT_OUTS_SUCCESS",
+  IMPORT_PRINT_OUTS_ERROR: "IMPORT_PRINT_OUTS_ERROR",
+  IMPORT_PRINT_OUTS_COMPLETE: "IMPORT_PRINT_OUTS_COMPLETE",
+
   EDIT_PRINT_OUTS_REQUEST: "EDIT_PRINT_OUTS_REQUEST",
   EDIT_PRINT_OUTS_SUCCESS: "EDIT_PRINT_OUTS_SUCCESS",
   EDIT_PRINT_OUTS_ERROR: "EDIT_PRINT_OUTS_ERROR",
@@ -73,6 +78,20 @@ export const printOutActions = {
   }),
   addPrintOutsComplete: () => ({
     type: printOutsConstants.ADD_PRINT_OUTS_COMPLETE,
+  }),
+  importPrintOutsRequest: () => ({
+    type: printOutsConstants.IMPORT_PRINT_OUTS_REQUEST,
+  }),
+  importPrintOutsSuccess: (payload) => ({
+    type: printOutsConstants.IMPORT_PRINT_OUTS_SUCCESS,
+    payload,
+  }),
+  importPrintOutsError: (payload) => ({
+    type: printOutsConstants.IMPORT_PRINT_OUTS_ERROR,
+    payload,
+  }),
+  importPrintOutsComplete: () => ({
+    type: printOutsConstants.IMPORT_PRINT_OUTS_COMPLETE,
   }),
   editPrintOutsRequest: () => ({
     type: printOutsConstants.EDIT_PRINT_OUTS_REQUEST,

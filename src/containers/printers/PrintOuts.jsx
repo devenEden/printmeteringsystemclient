@@ -7,11 +7,14 @@ import PrintOutsTable from "../../components/printOuts/Tables/PrintOutsTable";
 import AddPrintOut from "../../components/printOuts/Forms/AddPrintOut";
 import EditPrintOut from "../../components/printOuts/Forms/EditPrintOuts";
 import PrintOutDetails from "../../components/printOuts/Details/PrintOutDetails";
+import { Button } from "antd";
+import ImportPrintOuts from "../../components/printOuts/Forms/ImportPrintOuts";
 
 const PrintOuts = () => {
   const [addPrintOutsModal, setAddPrintOutsModal] = useState(false);
   const [editPrintOutsModal, setEditPrintOutsModal] = useState(false);
   const [printOutDetailsModals, setPrintOutsDetailsModal] = useState(false);
+  const [importPrintOutsModal, setImportPrintOutsModal] = useState(false);
 
   const { printOutsSuccess } = useSelector((state) => state.printOutsState);
   const dispatch = useDispatch();
@@ -21,14 +24,17 @@ const PrintOuts = () => {
     setPrintOutsDetailsModal(value);
   const toggleAddPrintOutModal = (value) => setAddPrintOutsModal(value);
   const toggleEditPrintOutModal = (value) => setEditPrintOutsModal(value);
+  const toggleImportPrintOutsModal = (value) => setImportPrintOutsModal(value);
 
+  //thunks
+  const importPrintOuts = (values) =>
+    dispatch(PrintOutsThunks.importPrintOuts(values));
   const refreshTable = () => {
     dispatch(printerThunks.printersMetaData());
     dispatch(PrintOutsThunks.getPrintOuts());
   };
   const deleteRecord = (id, printOuts) =>
     dispatch(PrintOutsThunks.deletePrintOuts(id, printOuts));
-  //thunks
   const addPrintOuts = (values, print_outs) =>
     dispatch(PrintOutsThunks.addPrintOuts(values, print_outs));
   const editPrintOuts = (values, print_outs) =>
@@ -48,6 +54,13 @@ const PrintOuts = () => {
   return (
     <div id="main-container">
       <h3 className="mx-4">Print Outs</h3>
+      <Button
+        onClick={() => toggleImportPrintOutsModal(true)}
+        size="large"
+        className="m-2"
+      >
+        Import Prints
+      </Button>
       <PrintOutsTable
         handleViewDetails={printOutDetails}
         handleOpenEditModal={toggleEditPrintOutModal}
@@ -68,6 +81,11 @@ const PrintOuts = () => {
       <PrintOutDetails
         visible={printOutDetailsModals}
         handleCloseModal={togglePrintOutDetailssModal}
+      />
+      <ImportPrintOuts
+        handleImportPrints={importPrintOuts}
+        visible={importPrintOutsModal}
+        handlCloseModal={toggleImportPrintOutsModal}
       />
     </div>
   );

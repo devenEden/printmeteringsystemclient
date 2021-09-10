@@ -69,6 +69,33 @@ const printOutsState = (state = initialState, { type, payload }) => {
         ...state,
         addPrintOutsSuccess: false,
       };
+    case printOutsConstants.IMPORT_PRINT_OUTS_COMPLETE:
+      return {
+        ...state,
+        importPrintOutsSuccess: false,
+      };
+    case printOutsConstants.IMPORT_PRINT_OUTS_REQUEST:
+      return {
+        ...state,
+        importPrintOutsLoading: true,
+      };
+    case printOutsConstants.IMPORT_PRINT_OUTS_SUCCESS:
+      return {
+        ...state,
+        importPrintOutsLoading: false,
+        importPrintOutsSuccess: true,
+        importPrintOutsError: "",
+        importPrintOutsMessage: payload.message,
+        printOuts: payload.data,
+      };
+    case printOutsConstants.IMPORT_PRINT_OUTS_ERROR:
+      return {
+        ...state,
+        importPrintOutsLoading: false,
+        importPrintOutsSuccess: false,
+        importPrintOutsMessage: "",
+        importPrintOutsError: payload,
+      };
     case printOutsConstants.EDIT_PRINT_OUTS_DATA:
       return {
         ...state,

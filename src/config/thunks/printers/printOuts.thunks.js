@@ -29,6 +29,18 @@ const PrintOutsThunks = {
     } else dispatch(printOutActions.addPrintOutsError(res.error));
     dispatch(printOutActions.addPrintOutsComplete());
   },
+  importPrintOuts: (body) => async (dispatch) => {
+    dispatch(printOutActions.importPrintOutsRequest());
+    const res = await apiRequests.filePostRequest(
+      `/printers/printOuts/import`,
+      body
+    );
+    if (res.success) {
+      dispatch(PrintOutsThunks.getPrintOuts());
+      dispatch(printOutActions.importPrintOutsSuccess(res.message));
+    } else dispatch(printOutActions.importPrintOutsError(res.error));
+    dispatch(printOutActions.importPrintOutsComplete());
+  },
   editPrintOuts: (body, printers) => async (dispatch) => {
     dispatch(printOutActions.editPrintOutsRequest());
     const res = await apiRequests.putRequest(

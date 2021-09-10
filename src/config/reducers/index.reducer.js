@@ -5,6 +5,7 @@ import printersState from "./printers/printers.reducer";
 import printerTypesState from "./printers/printerTypes.reducer";
 import printOutsState from "./printers/printOuts.reducer";
 import usersState from "./users/users.reducer";
+import billingState from "./billing/billing.reducer";
 
 export default combineReducers({
   authState,
@@ -13,4 +14,5 @@ export default combineReducers({
   printerTypesState,
   printOutsState,
   usersState,
+  billingState,
 });

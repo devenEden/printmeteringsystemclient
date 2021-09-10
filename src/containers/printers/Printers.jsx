@@ -21,6 +21,7 @@ const Printers = () => {
   const [openAddPrinterModal, setOpenAddPrinterModal] = useState(false);
   const [openEditPrinterModal, setOpenEditPrintersModal] = useState(false);
   const [printerDetailsModal, setPrinterDetailsModal] = useState(false);
+  const { permissions } = useSelector((state) => state.authState);
 
   const { printersSuccess } = useSelector((state) => state.printersState);
   const { printerTypesSuccess } = useSelector(
@@ -81,13 +82,16 @@ const Printers = () => {
     <div id="main-container">
       <Space direction="vertical">
         <h3 className="m-3 mb-0">Printers</h3>
-        <Button
-          onClick={() => togglePrinterTypesModal(true)}
-          className=""
-          type="link"
-        >
-          Printer Types
-        </Button>
+        {permissions.can_view_printer_types && (
+          <Button
+            onClick={() => togglePrinterTypesModal(true)}
+            className="mb-2"
+            type="default"
+            size="large"
+          >
+            Printer Types
+          </Button>
+        )}
       </Space>
       <PrintersTable
         handleViewDetails={printerDetails}

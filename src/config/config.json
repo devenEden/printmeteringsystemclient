@@ -33,6 +33,7 @@
     "can_add_users": "can_add_users",
     "can_delete_users": "can_delete_users",
     "can_edit_users": "can_edit_users",
-    "can_view_billing": "can_view_billing"
+    "can_view_billing": "can_view_billing",
+    "can_export_billing": "can_export_billing"
   }
 }

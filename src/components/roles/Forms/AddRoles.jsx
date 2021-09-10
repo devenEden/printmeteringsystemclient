@@ -168,6 +168,29 @@ const AddRoles = ({ visible, handleCloseModal, handleAddRecord }) => {
                     </Space>
                   </Form.Item>
                 </Form.Item>
+                <p className="m-0">Billing</p>
+                <Form.Item
+                  className="m-0 p-0"
+                  valuePropName="checked"
+                  label="Can View Billing"
+                  name={appConfig.permissions.can_view_billing}
+                >
+                  <Space direction="horizontal">
+                    <Checkbox value={true} defaultChecked={false} /> Can View
+                    Billing
+                  </Space>
+                </Form.Item>
+                <Form.Item
+                  className="m-0 p-0"
+                  valuePropName="checked"
+                  label="Can Export Billing"
+                  name={appConfig.permissions.can_export_billing}
+                >
+                  <Space direction="horizontal">
+                    <Checkbox value={true} defaultChecked={false} /> Can Export
+                    Billing
+                  </Space>
+                </Form.Item>
               </Space>
             </div>
             <div className=" m-2">
@@ -303,16 +326,6 @@ const AddRoles = ({ visible, handleCloseModal, handleAddRecord }) => {
             <div className=" m-2">
               <p className="m-0">Print Outs</p>
               <Space direction="vertical">
-                <Form.Item
-                  className="m-0 p-0"
-                  valuePropName="checked"
-                  name={appConfig.permissions.can_view_billing}
-                >
-                  <Space direction="horizontal">
-                    <Checkbox value={true} defaultChecked={false} /> Can View
-                    Print Outs
-                  </Space>
-                </Form.Item>
                 <Form.Item
                   className="m-0 p-0"
                   valuePropName="checked"

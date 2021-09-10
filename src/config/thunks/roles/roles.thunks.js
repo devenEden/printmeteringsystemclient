@@ -17,27 +17,29 @@ const roleThunks = {
   addRoles: (body, roles) => async (dispatch) => {
     dispatch(roleActions.addRolesRequest());
     const res = await apiRequests.postRequest(`/roles`, body);
-    if (res.success)
+    if (res.success) {
+      dispatch(roleThunks.getRoles());
       dispatch(
         roleActions.addRolesSuccess({
           data: [res.data, ...roles],
           message: res.message,
         })
       );
-    else dispatch(roleActions.addRolesError(res.error));
+    } else dispatch(roleActions.addRolesError(res.error));
     dispatch(roleActions.addRolesComplete());
   },
   editRoles: (body, roles) => async (dispatch) => {
     dispatch(roleActions.editRolesRequest());
     const res = await apiRequests.putRequest(`/roles/${body.id}`, body);
-    if (res.success)
+    if (res.success) {
+      dispatch(roleThunks.getRoles());
       dispatch(
         roleActions.editRolesSuccess({
           data: [res.data, ...roles],
           message: res.message,
         })
       );
-    else dispatch(roleActions.editRolesError(res.error));
+    } else dispatch(roleActions.editRolesError(res.error));
     dispatch(roleActions.editRolesComplete());
   },
   deleteRoles: (id, roles) => async (dispatch) => {

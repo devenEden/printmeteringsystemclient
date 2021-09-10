@@ -266,6 +266,44 @@ const EditRoles = ({ visible, handleCloseModal, handleEditRecord }) => {
                     </Select.Option>
                   </Select>
                 </Form.Item>
+                <p>Billing</p>
+                <Form.Item
+                  label="Can View Billing"
+                  className="m-0 p-0"
+                  name={appConfig.permissions.can_view_billing}
+                >
+                  <Select>
+                    <Select.Option
+                      key="can_view_billing"
+                      value={appConfig.permissions.can_view_billing}
+                    >
+                      Permission Granted
+                    </Select.Option>
+                    <Select.Option key="can_view_billing_denied" value={false}>
+                      Permission Denied
+                    </Select.Option>
+                  </Select>
+                </Form.Item>
+                <Form.Item
+                  label="Can Export Billing"
+                  className="m-0 p-0"
+                  name={appConfig.permissions.can_export_billing}
+                >
+                  <Select>
+                    <Select.Option
+                      key="can_export_billing"
+                      value={appConfig.permissions.can_export_billing}
+                    >
+                      Permission Granted
+                    </Select.Option>
+                    <Select.Option
+                      key="can_export_billing_denied"
+                      value={false}
+                    >
+                      Permission Denied
+                    </Select.Option>
+                  </Select>
+                </Form.Item>
               </Space>
             </div>
             <div className=" m-2">
@@ -512,23 +550,6 @@ const EditRoles = ({ visible, handleCloseModal, handleEditRecord }) => {
             <div className=" m-2">
               <p className="m-0">Print Outs</p>
               <Space direction="vertical">
-                <Form.Item
-                  label="Can View Billing"
-                  className="m-0 p-0"
-                  name={appConfig.permissions.can_view_billing}
-                >
-                  <Select>
-                    <Select.Option
-                      key="can_view_billing"
-                      value={appConfig.permissions.can_view_billing}
-                    >
-                      Permission Granted
-                    </Select.Option>
-                    <Select.Option key="can_view_billing_denied" value={false}>
-                      Permission Denied
-                    </Select.Option>
-                  </Select>
-                </Form.Item>
                 <Form.Item
                   className="m-0 p-0"
                   label="Can View Print Outs"

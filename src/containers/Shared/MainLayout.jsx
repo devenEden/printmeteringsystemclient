@@ -45,8 +45,8 @@ const MainLayout = () => {
             <Switch>
               <Route
                 exact
-                path={routes.dashboard.path}
-                component={routes.dashboard.component}
+                path={routes.billing.path}
+                component={routes.billing.component}
               />
               <Route
                 exact

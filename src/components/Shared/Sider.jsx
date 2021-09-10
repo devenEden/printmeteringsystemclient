@@ -3,6 +3,7 @@ import React from "react";
 import {
   AiFillLayout,
   AiFillPrinter,
+  AiOutlineBank,
   AiOutlineFilePpt,
   AiOutlineLogout,
   AiOutlineUser,
@@ -42,6 +43,11 @@ const AppSider = () => {
     >
       <Menu theme="light" mode="inline" defaultSelectedKeys={["4"]}>
         <h4 className="text-center m-3 mb-5"> </h4>
+        {permissions.can_view_billing && (
+          <Menu.Item icon={<AiOutlineBank />}>
+            <Link to={routes.billing.path}>Billing</Link>
+          </Menu.Item>
+        )}
         {permissions.can_view_printers && (
           <Menu.Item icon={<AiFillPrinter />}>
             <Link to={routes.printers.path}>Printers</Link>

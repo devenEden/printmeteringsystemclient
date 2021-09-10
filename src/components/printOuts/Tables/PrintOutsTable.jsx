@@ -2,6 +2,7 @@ import { Button, message, Popover, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { printOutActions } from "../../../config/actions/printers/printOuts.actions";
+import generatePDF from "../../../config/helpers/generatePdf";
 import { numberWithCommas } from "../../../config/helpers/numberFormatter";
 import TableButtonActions from "../../Shared/Table/TableActions";
 import TableTitle from "../../Shared/Table/Title";
@@ -24,9 +25,10 @@ const PrintOutsTable = ({
     deletePrintOutsMessage,
     deletePrintOutsError,
   } = useSelector((state) => state.printOutsState);
+  const { permissions } = useSelector((state) => state.authState);
   const columns = [
     {
-      title: "Print Outs",
+      title: "Number Of Prints/Copies",
       key: "name",
       render: (text) => {
         return (
@@ -144,6 +146,34 @@ const PrintOutsTable = ({
     dispatch(printOutActions.editPrintOutsData(updateRecordArray[0]));
     handleOpenEditModal(true);
   };
+  const exportRecords = () => {
+    const pdfColumns = [
+      "Printer",
+      "Print Outs",
+      "Unit Cost",
+      "Total Cost",
+      "Timestamp",
+    ];
+    let pdfRows = [];
+    data?.forEach((record) => {
+      const row = [
+        record.printerName,
+        numberWithCommas(parseInt(record.print_outs)),
+        numberWithCommas(parseInt(record.unit_cost)),
+        numberWithCommas(parseInt(record.total_cost)),
+        new Date(record.created_at).toLocaleDateString(),
+      ];
+      pdfRows.push(row);
+    });
+    if (permissions.can_export_print_outs) {
+      generatePDF(
+        pdfRows,
+        pdfColumns,
+        `Print Outs - ${new Date().toLocaleDateString()}`,
+        `Print Outs - ${new Date().toLocaleDateString()}.pdf`
+      );
+    } else message.error("You Do Not Have Permission To Export Print Outs");
+  };
   const setfilterTableNull = (e) => {
     if (!e.target.value) setfilterTable(null);
   };
@@ -174,7 +204,7 @@ const PrintOutsTable = ({
             search,
             setfilterTableNull,
             refreshTable,
-            // exportRecords,
+            exportRecords,
             openAddModal,
           })
         }

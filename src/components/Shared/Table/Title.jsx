@@ -1,13 +1,13 @@
 import { Button, Popover, Space } from "antd";
 import React from "react";
 import { AiOutlinePlus, AiOutlineSearch } from "react-icons/ai";
-import { /* FcExport, */ FcRefresh } from "react-icons/fc";
+import { /* FcExport, */ FcExport, FcRefresh } from "react-icons/fc";
 
 const TableTitle = ({
   search,
   setfilterTableNull,
   refreshTable,
-  //exportRecords,
+  exportRecords,
   openAddModal,
 }) => {
   const actions = (
@@ -20,6 +20,11 @@ const TableTitle = ({
       <Button className="bg-light w-100">
         <Space>
           <AiOutlineSearch /> Search
+        </Space>
+      </Button>
+      <Button onClick={exportRecords} type="dashed" className="w-100">
+        <Space>
+          <FcExport /> Export
         </Space>
       </Button>
     </Space>

@@ -4,6 +4,8 @@ import LoginForm from "../../components/Auth/forms/LoginForm";
 import routes from "../../config/routes/routes";
 import authThunks from "../../config/thunks/auth/auth.thunks";
 import { Modal } from "antd";
+import { useHistory } from "react-router";
+import { getAuthToken } from "../../config/helpers/authToken";
 
 const Login = () => {
   const { authenticated, loginSuccess } = useSelector(
@@ -13,14 +15,16 @@ const Login = () => {
     (state) => state.authState.forgotPassword
   );
   const dispatch = useDispatch();
+  const history = useHistory();
+  const authToken = getAuthToken();
   useEffect(() => {
     if (authenticated && loginSuccess) {
       window.location = "/";
     }
     document.title = routes.authentication.login.title;
-  }, [authenticated, loginSuccess]);
+    authToken && history.push("/");
+  }, [authenticated, loginSuccess, history, authToken]);
   const loginUser = (values) => {
-    console.log(values);
     dispatch(authThunks.loginUser(values));
     if (loginSuccess) window.location = "/";
   };

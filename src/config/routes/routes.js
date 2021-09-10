@@ -27,7 +27,7 @@ const routes = {
     },
   },
   dashboard: {
-    path: "/",
+    path: "/dashboard",
     title: "DASHBOARD",
     component: Dashboard,
   },
@@ -42,7 +42,7 @@ const routes = {
     component: Printers,
   },
   printOuts: {
-    path: "/printers/print_outs",
+    path: "/",
     title: "PRINT OUTS",
     component: PrintOuts,
   },

@@ -72,5 +72,20 @@ const apiRequests = {
       return errorResponseObject;
     }
   },
+  filePostRequest: async (path, body) => {
+    try {
+      const res = await fetch(`${appConfig.server_routes_url}${path}`, {
+        method: "POST",
+        headers: {
+          authorization,
+        },
+        body: body,
+      });
+      return res.json();
+    } catch (error) {
+      console.error("File post  error", error);
+      return errorResponseObject;
+    }
+  },
 };
 export default apiRequests;

@@ -30,7 +30,7 @@ const AddPrintOut = ({ visible, handleCloseModal, handleAddRecord }) => {
     <div>
       <Modal
         footer={null}
-        title="ADD PRINT OUT "
+        title="ADD PRINTS OR COPIES"
         onCancel={closeModal}
         visible={visible}
       >
@@ -44,7 +44,7 @@ const AddPrintOut = ({ visible, handleCloseModal, handleAddRecord }) => {
             />
           )}
           <Form.Item
-            label="Print Outs"
+            label="Number Of Prints/Copies"
             name="print_outs"
             rules={[{ required: true, message: "Please add a printer type" }]}
           >

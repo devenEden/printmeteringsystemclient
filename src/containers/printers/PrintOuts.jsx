@@ -47,6 +47,7 @@ const PrintOuts = () => {
   }, [printOutsSuccess, dispatch]);
   return (
     <div id="main-container">
+      <h3 className="mx-4">Print Outs</h3>
       <PrintOutsTable
         handleViewDetails={printOutDetails}
         handleOpenEditModal={toggleEditPrintOutModal}

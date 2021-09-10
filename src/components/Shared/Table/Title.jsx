@@ -1,4 +1,4 @@
-import { Button, Popover, Space } from "antd";
+import { Button, Input, Popover, Space } from "antd";
 import React from "react";
 import { AiOutlinePlus, AiOutlineSearch } from "react-icons/ai";
 import { /* FcExport, */ FcExport, FcRefresh } from "react-icons/fc";
@@ -17,16 +17,30 @@ const TableTitle = ({
           <FcRefresh /> Refresh
         </Space>
       </Button>
-      <Button className="bg-light w-100">
-        <Space>
-          <AiOutlineSearch /> Search
-        </Space>
-      </Button>
       <Button onClick={exportRecords} type="dashed" className="w-100">
         <Space>
           <FcExport /> Export
         </Space>
       </Button>
+      <div className="d-sm-none w-100">
+        <Popover
+          content={() => (
+            <Input.Search
+              onChange={setfilterTableNull}
+              placeholder="Search by..."
+              enterButton
+              onSearch={search}
+            ></Input.Search>
+          )}
+          trigger="click"
+        >
+          <Button className="bg-light w-100">
+            <Space>
+              <AiOutlineSearch /> Search
+            </Space>
+          </Button>
+        </Popover>
+      </div>
     </Space>
   );
   return (
@@ -41,6 +55,14 @@ const TableTitle = ({
           <Button>Actions</Button>
         </Popover>
       </Space>
+      <div className="w-50 d-none d-md-block">
+        <Input.Search
+          onChange={setfilterTableNull}
+          placeholder="Search by..."
+          enterButton
+          onSearch={search}
+        ></Input.Search>
+      </div>
     </div>
   );
 };

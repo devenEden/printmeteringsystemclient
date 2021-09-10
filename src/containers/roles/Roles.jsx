@@ -42,6 +42,7 @@ const Roles = () => {
 
   return (
     <div id={"main-container"} className="main-container">
+      <h3 className="mx-4">Roles</h3>
       <RolesTable
         handleDeleteRole={deleteRole}
         handleRefreshTable={refreshTable}

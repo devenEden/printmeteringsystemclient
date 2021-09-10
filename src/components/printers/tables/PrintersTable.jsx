@@ -2,6 +2,7 @@ import { Button, message, Popover, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { printerActions } from "../../../config/actions/printers/printers.actions";
+import generatePDF from "../../../config/helpers/generatePdf";
 import TableButtonActions from "../../Shared/Table/TableActions";
 import TableTitle from "../../Shared/Table/Title";
 
@@ -23,6 +24,7 @@ const PrintersTable = ({
     deletePrintersMessage,
     deletePrintersError,
   } = useSelector((state) => state.printersState);
+  const { permissions } = useSelector((state) => state.authState);
   const columns = [
     {
       title: "Printer",
@@ -30,7 +32,7 @@ const PrintersTable = ({
       render: (text) => {
         return (
           <div>
-            Printer: {text.name} <br />
+            <span className="d-sm-none">Printer:</span> {text.name} <br />
             <div className="d-sm-none">
               Ip Address: {text.ip} <br />
               Location: {text.location} <br />
@@ -102,6 +104,7 @@ const PrintersTable = ({
     );
     setfilterTable(filterTable);
   };
+
   const deleteRecord = (e) => {
     setDeleteId(e.target.id);
   };
@@ -130,6 +133,22 @@ const PrintersTable = ({
   const openAddModal = () => {
     handleOpenAddModal(true);
   };
+  const exportRecords = () => {
+    const pdfColumns = ["Printer", "Ip Address", "Location"];
+    let pdfRows = [];
+    data?.forEach((record) => {
+      const row = [record.name, record.ip, record.location];
+      pdfRows.push(row);
+    });
+    if (permissions.can_export_printers) {
+      generatePDF(
+        pdfRows,
+        pdfColumns,
+        `Printers - ${new Date().toLocaleDateString()}`,
+        `Printers - ${new Date().toLocaleDateString()}.pdf`
+      );
+    } else message.error("You Do Not Have Permission To Export Printers");
+  };
 
   useEffect(() => {
     if (deletePrintersSuccess && deletePrintersMessage)
@@ -148,7 +167,7 @@ const PrintersTable = ({
             search,
             setfilterTableNull,
             refreshTable,
-            // exportRecords,
+            exportRecords,
             openAddModal,
           })
         }

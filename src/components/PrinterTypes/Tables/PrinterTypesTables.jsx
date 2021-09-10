@@ -2,6 +2,8 @@ import { Button, message, Modal, Popover, Table } from "antd";
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { printerTypeActions } from "../../../config/actions/printers/printerTypes.actions";
+import generatePDF from "../../../config/helpers/generatePdf";
+import { numberWithCommas } from "../../../config/helpers/numberFormatter";
 import TableButtonActions from "../../Shared/Table/TableActions";
 import TableTitle from "../../Shared/Table/Title";
 
@@ -16,6 +18,7 @@ const PrinterTypesTables = ({
 }) => {
   const [deleteId, setDeleteId] = useState("");
   const [filterTable, setfilterTable] = useState(null);
+  const { permissions } = useSelector((state) => state.authState);
   const {
     printerTypesLoading: loading,
     printerTypes: data,
@@ -129,6 +132,22 @@ const PrinterTypesTables = ({
   const openAddModal = () => {
     handleOpenAddModal(true);
   };
+  const exportRecords = () => {
+    const pdfColumns = ["Printer Type", "Unit Cost"];
+    let pdfRows = [];
+    data?.forEach((record) => {
+      const row = [record.name, numberWithCommas(parseInt(record.unit_cost))];
+      pdfRows.push(row);
+    });
+    if (permissions.can_view_printer_types) {
+      generatePDF(
+        pdfRows,
+        pdfColumns,
+        `Printer Types - ${new Date().toLocaleDateString()}`,
+        `Printer Types - ${new Date().toLocaleDateString()}.pdf`
+      );
+    } else message.error("You Do Not Have Permission To Export Printers");
+  };
 
   useEffect(() => {
     if (deletePrinterTypesSuccess && deletePrinterTypesMessage)
@@ -160,7 +179,7 @@ const PrinterTypesTables = ({
               search,
               setfilterTableNull,
               refreshTable,
-              // exportRecords,
+              exportRecords,
               openAddModal,
             })
           }

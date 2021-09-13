@@ -7,9 +7,6 @@ const billingState = (state = initialState, { type, payload }) => {
       return {
         ...state,
         billingLoading: true,
-        billing: payload,
-        billingError: "",
-        billingSuccess: true,
       };
     case billingConstants.SET_BILLING_SUCCESS:
       return {

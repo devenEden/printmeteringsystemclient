@@ -197,7 +197,7 @@ const PrintOutsTable = ({
     <div>
       <Table
         rowKey={(r) => r.id}
-        pagination={{ total: data.length, showSizeChanger: true, showTotal }}
+        pagination={{ total: data?.length, showSizeChanger: true, showTotal }}
         loading={loading}
         title={() =>
           TableTitle({

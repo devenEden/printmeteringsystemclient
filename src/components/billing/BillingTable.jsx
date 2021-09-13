@@ -120,7 +120,7 @@ const BillingTable = ({ handleRefreshTable }) => {
       <Table
         rowKey={(r) => r.id}
         pagination={{ total: data?.length, showSizeChanger: true, showTotal }}
-        loading={loading}
+        loading={loading || false}
         title={() =>
           TableTitle({
             search,

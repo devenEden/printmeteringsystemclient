@@ -8,6 +8,17 @@ const billingThunks = {
     if (res.success) dispatch(billingActions.setBillingSuccess(res.data));
     else dispatch(billingActions.setBillingError(res.error));
   },
+  getBillingByPeriod: (values) => async (dispatch) => {
+    dispatch(billingActions.getBillingByPeriodLoading());
+    const res = await apiRequests.postRequest(
+      "/billing/billingByPeriod",
+      values
+    );
+    if (res.success)
+      dispatch(billingActions.getBillingByPeriodSuccess(res.data));
+    else dispatch(billingActions.getBillingByPeriodError(res.error));
+    dispatch(billingActions.getBillingByPeriodComplete());
+  },
 };
 
 export default billingThunks;

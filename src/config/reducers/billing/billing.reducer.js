@@ -23,6 +23,31 @@ const billingState = (state = initialState, { type, payload }) => {
         billingError: payload,
         billingSuccess: false,
       };
+    case billingConstants.GET_BILLING_BY_PERIOD_LOADING:
+      return {
+        ...state,
+        billingPeriodLoading: true,
+      };
+    case billingConstants.GET_BILLING_BY_PERIOD_SUCCESS:
+      return {
+        ...state,
+        billingPeriodLoading: false,
+        billingPeriodSuccess: true,
+        billingPeriod: payload,
+      };
+    case billingConstants.GET_BILLING_BY_PERIOD_ERROR:
+      return {
+        ...state,
+        billingPeriodLoading: false,
+        billingPeriodSuccess: false,
+        billingPeriodError: payload,
+      };
+    case billingConstants.GET_BILLING_BY_PERIOD_COMPLETE:
+      return {
+        ...state,
+        billingPeriodSuccess: false,
+      };
+
     default:
       return state;
   }
